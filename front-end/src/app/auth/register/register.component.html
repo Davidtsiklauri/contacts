@@ -1,0 +1,38 @@
+<div class="register-form">
+    <div class="register-form-header">
+        <div class="text-center">
+            <h1>Register!</h1>
+            <p>Register by entering the information below</p>
+        </div>
+    </div>
+    <div class="register-form-body mt-4">
+        <form [formGroup]='registerForm'> 
+            <mat-form-field class="w-100">
+                <mat-label>Enter  Email</mat-label>
+                <input matInput placeholder="Enter  Email" formControlName="email">
+            </mat-form-field>
+    
+            <mat-form-field class="w-100">
+                <mat-label>Enter  Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" 
+                       formControlName='password' placeholder="Enter  Password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" 
+                       [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{ hide ? 'visibility_off' : 
+                                    'visibility' }}
+                </mat-icon>
+                </button>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="register-form-footer mt-2">
+        <button class="btn btn-primary w-100">
+            Continue
+        </button>
+        <div class="mt-4 text-center">
+            <a class="navigation-link" routerLink='/auth/login'>
+                 have an account? Log in
+            </a>
+        </div>
+    </div>
+</div>

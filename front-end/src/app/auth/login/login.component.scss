@@ -1,0 +1,16 @@
+@import 'src/variables';
+
+.login-form {
+    p {
+        color: $soft-grey; 
+    }
+    a {
+        color: $soft-grey;
+    }
+    .forget-your-password {
+        a{
+            vertical-align: super;
+            padding-left: 12px;
+        }
+    }
+}

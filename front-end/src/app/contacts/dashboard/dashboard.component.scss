@@ -1,0 +1,68 @@
+@import 'src/variables';
+
+.dashboard {
+    .nav-dashboard {
+        min-width: 300px;
+        border-right: 1px solid $soft-grey;
+        ul {
+            list-style-type: none;
+            li {
+                cursor: pointer;
+                font-size: 1rem;
+                padding-top: 10px;
+                padding: 5px 25px;
+                a {
+                    color: $soft-grey;
+                    vertical-align: super;
+                    padding-left: 10px;
+                };
+            }
+            .active-nav {
+                background: $light-purple;
+                position: relative;
+                &:before {
+                    height: 100%;
+                    width: 4px;
+                    background: $medium-purple;
+                    position: absolute;
+                    left: 0px;
+                    content: '';
+                    display: block;
+                    top: 0px;
+                }
+            }
+        }
+    };
+    .content {
+        background-color: #F4F8F9;
+        padding-right: 16px;
+        .content-body {
+            .content-header-info {
+                h1 {
+                    color: $medium-purple;
+                }
+                p {
+                    padding-left: 10px;
+                    color: $soft-grey;
+                }
+            }
+            .add-contact {
+                padding: 7px 15px;
+                background: #27AAF7;
+                border-radius: 6px;
+                color: white;
+                cursor: pointer;
+                p {
+                   padding-left: 12px;
+                 }
+           }
+        }
+    }
+}
+.content-header {
+   background: white;
+   margin: -1rem;
+   .content-search {
+       min-width: 300px;
+   }
+};
