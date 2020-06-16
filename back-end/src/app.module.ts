@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactsModule } from './contacts/contacts.module';
 import { GroupsModule } from './groups/groups.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { GroupsModule } from './groups/groups.module';
     UserModule,
     AuthModule,
     ContactsModule,
-    GroupsModule
+    GroupsModule,
+    UploadModule
   ],
   controllers: [AppController],
   providers: [AppService],

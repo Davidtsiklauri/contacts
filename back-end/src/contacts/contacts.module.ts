@@ -16,6 +16,9 @@ import { AuthModule } from 'src/auth/auth.module';
   imports: [
     MongooseModule.forFeature([{name: "contacts", schema: contactsSchema}]),
     AuthModule
+  ],
+  exports: [
+    ContactsService
   ]
 })
 export class ContactsModule {}
