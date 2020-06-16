@@ -25,8 +25,13 @@
             </mat-form-field>
         </form>
     </div>
+
+    <span *ngIf="registerForm.errors?.isExists" class="warning d-block pb-2">
+        User with this email already exists
+    </span>
+
     <div class="register-form-footer mt-2">
-        <button class="btn btn-primary w-100">
+        <button class="btn btn-primary w-100" (click)='register()'>
             Continue
         </button>
         <div class="mt-4 text-center">

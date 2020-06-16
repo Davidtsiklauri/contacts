@@ -11,7 +11,8 @@ export const UserSchema = new mongoose.Schema({
         type: String
     },
     email: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.String,
+        required: true,
+        unique: true
     }
 });

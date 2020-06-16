@@ -12,7 +12,14 @@ export class UserService {
         const  { email, password} = user;
         const hash = await bcrypt.hash(password, 10);
         const userModel = new this.userModel({password: hash, email});
-        return await userModel.save();
+        try{
+            return await userModel.save();
+        }catch(err){
+            if(err && err.code && err.code === 11000) {
+               throw new HttpException('email with this email exists', HttpStatus.UNAUTHORIZED);
+            }
+            return err;
+        }
     };
 
     async login( creditinials: any ) {

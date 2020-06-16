@@ -28,7 +28,7 @@ export class AuthService {
        };
 
      }else {
-          throw new HttpException('Wrong Creditinials', HttpStatus.NOT_FOUND);
+          throw new HttpException('Wrong Creditinials', HttpStatus.UNAUTHORIZED);
      };
      
   
