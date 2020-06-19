@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
 import { RecoverPasswordComponent } from './recover-password/recover-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 
 @NgModule({
@@ -16,7 +17,7 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
     AuthComponent, 
     LoginComponent, 
     RegisterComponent, 
-    RecoverPasswordComponent,
+    RecoverPasswordComponent, UpdatePasswordComponent,
   ],
   imports: [
     CommonModule,

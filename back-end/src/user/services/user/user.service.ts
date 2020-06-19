@@ -15,6 +15,7 @@ export class UserService {
         try{
             return await userModel.save();
         }catch(err){
+            // Unique Email
             if(err && err.code && err.code === 11000) {
                throw new HttpException('email with this email exists', HttpStatus.UNAUTHORIZED);
             }
@@ -22,11 +23,7 @@ export class UserService {
         }
     };
 
-    async login( creditinials: any ) {
-        console.log(creditinials);
-    };
-
-    async getByEmail(email: string) {
+    async getByEmail(email: string): Promise<any> {
         const user = await this.userModel.findOne({ email });
         if (user) {
           return user;
@@ -35,7 +32,27 @@ export class UserService {
     };
 
     async doesUserExists(hashed: string, password: string): Promise<boolean> {
-            return await bcrypt.compare(  password, hashed);
+            return await bcrypt.compare(  password, hashed );
+    };
+
+    async findIfEmailExists( email: string ): Promise<any> {
+           const users = await this.userModel.find({ email });
+           return users;
+    };
+
+    async updateUserPassword(user_id: string, password: string): Promise<any> {
+        const hash = await bcrypt.hash(password, 10);
+        return await this.userModel
+                         .updateOne({user_id}, { password: hash })
+    };
+
+    async getUserByUserId( user_id: string ): Promise<any> {
+        try{
+            const users = await this.userModel.find({ user_id });
+            return users;
+        }catch{
+            throw new HttpException('not foud', HttpStatus.NOT_FOUND)
+        }
     };
 
 }

@@ -1,18 +1,30 @@
-import { Controller, Post, UseInterceptors, UploadedFiles, UseGuards, Req } from '@nestjs/common';
+import { Controller, Post, UseInterceptors, 
+         UploadedFiles, UseGuards,  Param, Get, Header, Res 
+} from '@nestjs/common';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
-import { ContactsService } from 'src/contacts/services/contacts.service';
 import { JwtAuthGuard } from 'src/auth/auth/jwt-auth.guard';
+import { UploadService } from 'src/upload/services/upload/upload.service';
+
 
 @Controller('upload')
 export class UploadController {
 
-    constructor(private contactsService: ContactsService){ }
+    constructor(
+        private uploadService: UploadService
+    ){ }
 
     @UseGuards(JwtAuthGuard)
-    @Post('contacts') 
+    @Post('contacts/:contact_id') 
     @UseInterceptors(AnyFilesInterceptor())
-    uploadFile(@UploadedFiles() files , @Req() { user } ) {
-         console.log(files, user);
-    }
+    uploadFile(@UploadedFiles() file , @Param() params ) {
+         return this.uploadService
+                    .uploadFileInContacts(params.contact_id, file[0].filename);
+    };
 
+    @Get(':id')
+    @Header('content-type', 'image/jpeg')
+    async getPhoto(@Param() params, @Res() res) {
+          res.sendFile(params.id, { root: 'file'});
+    };
+ 
 }

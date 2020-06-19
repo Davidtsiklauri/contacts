@@ -6,11 +6,13 @@ import { ContactPersonBoxComponent } from './components/contact-person-box/conta
 import { SanitizePipe } from './pipes/sanitize.pipe';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { AvatarPipe } from './pipes/avatar.pipe';
 
 
 const COMPONENTS = [
   ContactPersonBoxComponent, 
-  SanitizePipe
+  SanitizePipe,
+  AvatarPipe
 ];
 
 @NgModule({
@@ -22,7 +24,6 @@ const COMPONENTS = [
     RouterModule,
     MatMenuModule,
     MatIconModule
-
   ],
   exports: [
     ReactiveFormsModule,

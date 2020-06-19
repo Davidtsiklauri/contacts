@@ -1,6 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { IContact } from '../models/contacts.interface';
+
 
 @Component({
   selector: 'app-add-contact',
@@ -12,20 +15,28 @@ export class AddContactComponent implements OnInit, OnDestroy {
   src: any = '';
   blob: Blob = null;
   addForm: FormGroup;
+  isEdit: boolean = false;
 
-  
   constructor(
-    private dialogRef: MatDialogRef<AddContactComponent>,
-    private fb: FormBuilder
+      public dialogRef: MatDialogRef<AddContactComponent>,
+      private fb: FormBuilder,
+      @Inject(MAT_DIALOG_DATA) private data: IContact
   ) {
       this.addForm = fb.group({
-           user_name: ['', Validators.required],
+           first_name: ['', Validators.required],
            last_name: ['', Validators.required],
            phone_number: ['', Validators.required]
       })
-   }
+  }
 
   ngOnInit(): void {
+    // Edit Form Contract
+    if(this.data) {
+        this.addForm.patchValue(this.data);
+        this.src = this.data.file;
+        this.isEdit = true;
+    }
+    
   }
 
   uploadFile(e: any) {
@@ -36,14 +47,16 @@ export class AddContactComponent implements OnInit, OnDestroy {
     }
   };
 
+  onSubmit()  {
+    if(this.addForm.valid) {
+      this.dialogRef.close({ form_value:this.addForm.value, file: this.blob }  );
+    }
+  };
+  
   ngOnDestroy() {
     if(this.src) {
       URL.revokeObjectURL(this.src);
     }
   };
-  
-  onNoClick(isSaveBoolean: boolean )  {
-    this.dialogRef.close(isSaveBoolean && {...this.addForm, file: this.blob }  );
-  }
 
-}
+};

@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { ContactsModule } from './contacts/contacts.module';
 import { GroupsModule } from './groups/groups.module';
 import { UploadModule } from './upload/upload.module';
+import { MailerModule } from '@nestjs-modules/mailer'
+
 
 @Module({
   imports: [
@@ -17,7 +19,20 @@ import { UploadModule } from './upload/upload.module';
     AuthModule,
     ContactsModule,
     GroupsModule,
-    UploadModule
+    UploadModule,
+    MailerModule.forRoot({
+      transport: {
+        service: "gmail.com",
+        host: 'localhost',
+        port: 1025,
+        ignoreTLS: true,
+        secure: false,
+        auth: {
+          user: process.env.MAILDEV_INCOMING_USER,
+          pass: process.env.MAILDEV_INCOMING_PASS
+        },
+      },
+    })
   ],
   controllers: [AppController],
   providers: [AppService],

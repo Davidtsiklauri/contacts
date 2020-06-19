@@ -1,5 +1,51 @@
-<div class="row">
-    <div class="col-3" *ngFor='let item of list'>
-        <app-contact-person-box></app-contact-person-box>
+<form action="" autocomplete="off" [formGroup]='searchForm'> 
+    <div class="d-flex align-items-center w-50 pl-3 content-search">
+        <mat-form-field class="w-100">
+            <input type='text' matInput 
+                   placeholder="Serch by firstname" formControlName='first_name'> 
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+            <input type='text' matInput 
+                    placeholder="Serch by lastname" formControlName='last_name'> 
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+            <input type='number' matInput 
+                    placeholder="Search by number" formControlName='phone_number'> 
+        </mat-form-field>
     </div>
-</div>
+</form>    
+
+
+<ng-template #loaded>
+    <div class="contacts">
+        <div class="add-contact d-flex align-items-center mb-3" 
+             *ngIf="selectedContacts.length >= 2" 
+             (click)='openAddGroupModal()'>
+            <mat-icon>person_add</mat-icon> 
+            <p class="mb-0">
+                Create Group
+            </p>
+        </div>
+    
+        <div class="row contacts">
+            <div class="col-xl-3 col-lg-4 col-md-6 mb-3 position-relative" 
+                *ngFor='let contact of contacts'>
+                <app-contact-person-box [contact]='contact' (result)='getResult($event)'></app-contact-person-box>
+                <div class="check">
+                    <mat-checkbox  (change)='handleValueChange($event.checked, contact.contact_id)' 
+                                    [value]='contact.contact_id'></mat-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>    
+</ng-template>
+
+
+<ng-container *ngIf="isLoading; else loaded">
+    <div class="d-flex justify-content-center">
+        <mat-spinner ></mat-spinner>
+    </div>
+</ng-container>
+ 

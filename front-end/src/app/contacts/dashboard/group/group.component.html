@@ -1,1 +1,33 @@
-<p>group works!</p>
+
+<ng-template #loaded> 
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-3" *ngFor='let group of groups'>
+            <mat-card class="groups-container w-100 h-100">
+                <mat-card-header>
+                    <mat-card-title>{{ group.group_title }}</mat-card-title>
+                </mat-card-header>
+                    <div *ngFor='let contact of group.contacts'>
+                        <mat-card-content class="d-flex align-items-center">
+                            <img mat-card-avatar [src]="contact.file | avatar" alt="avatar">
+                            <div class="right-side">
+                                <mat-card-subtitle class="ml-3 mb-0 cursor-pointer">
+                                    {{ contact.first_name + ' ' +  contact.last_name }}
+                                </mat-card-subtitle>
+                                <mat-card-subtitle class="ml-3 mb-0 cursor-pointer">
+                                    {{ contact.phone_number }}
+                                </mat-card-subtitle>
+                            </div>
+                        </mat-card-content>
+                    </div>
+            </mat-card>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-container *ngIf="isLoading; else loaded">
+    <div class="d-flex justify-content-center">
+        <mat-spinner ></mat-spinner>
+    </div>
+</ng-container>
+ 

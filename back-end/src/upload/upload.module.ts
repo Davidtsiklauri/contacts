@@ -3,6 +3,7 @@ import { UploadController } from './controllers/upload/upload.controller';
 import { MulterModule } from '@nestjs/platform-express';
 import { ContactsModule } from 'src/contacts/contacts.module';
 import { AuthModule } from 'src/auth/auth.module';
+import { UploadService } from './services/upload/upload.service';
 
 
 @Module({
@@ -10,9 +11,13 @@ import { AuthModule } from 'src/auth/auth.module';
   imports: [
     ContactsModule,
     MulterModule.register({
-      dest: '/file'
+      dest: './file'
     }),
-    AuthModule
+    AuthModule,
+    ContactsModule
+  ],
+  providers: [
+    UploadService
   ]
 })
 export class UploadModule {}

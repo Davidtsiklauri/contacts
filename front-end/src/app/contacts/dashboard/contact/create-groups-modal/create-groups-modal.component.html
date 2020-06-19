@@ -1,0 +1,14 @@
+<div class="add-group">
+    <mat-form-field class="w-100">
+        <mat-label>Enter Group Name</mat-label>
+        <input matInput placeholder="Enter Group Name" [formControl]='nameCtrl'>
+    </mat-form-field>
+    
+    
+    <div class="text-right mt-3">
+        <button mat-flat-button  
+               (click)='dialogRef.close()'>Close</button>
+        <button mat-flat-button color="primary" (click)='onSubmit()'>Save</button>
+    </div>
+
+</div>

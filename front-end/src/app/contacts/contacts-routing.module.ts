@@ -11,7 +11,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, children: [
           { path: '', pathMatch: 'full', redirectTo: 'contact' },
-          { path: 'contact', component: ContactComponent  },
+          { path: 'contact', component: ContactComponent,  },
           { path: 'group', component: GroupComponent }
       ] } 
   ]}

@@ -16,10 +16,27 @@ li:focus {
     outline: unset !important;
 }
 
-.cursour-pointer { 
+.cursor-pointer { 
     cursor: pointer;
 }
 
 .warning {
     color: red;
 };
+
+ 
+.add-contact {
+    padding: 7px 15px;
+    background: #27AAF7;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    max-width: 150px;
+    p {
+       padding-left: 12px;
+     }
+};
+
+.user-select-none {
+    user-select: none;
+}

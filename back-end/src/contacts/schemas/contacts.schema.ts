@@ -12,6 +12,7 @@ export const contactsSchema = new mongoose.Schema({
     },
     file: {
         type: String,
+        default: ''
     },
     phone_number: {
         type: String,
