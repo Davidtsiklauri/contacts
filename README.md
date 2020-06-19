@@ -27,8 +27,3 @@ npm run start-backend
 npm run start-front-end
 ```
 
-
-#### 5) Open chrome on 
-```sh
- http://localhost:8080/
-```
