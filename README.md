@@ -12,7 +12,7 @@ cd contacts
 #### 3) Install Dependencies
 
 ```sh
-nnpm run install-dependencies
+npm run install-dependencies
 ```
 
 #### 4) Run Back-End
