@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "install-dependencies": "npm install --prefix ./back-end && npm install --prefix ./front-end",
+    "start-backend": "npm run start --prefix ./back-end",
+    "start-front-end": "npm run start --prefix ./front-end"
+  }
+}
