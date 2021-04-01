@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ./back-end
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+  frontend:
+    build:
+      context: ./front-end
+      dockerfile: ./Dockerfile
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
