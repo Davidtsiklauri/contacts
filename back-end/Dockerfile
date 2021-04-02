@@ -4,7 +4,8 @@ LABEL version="1.0"
 WORKDIR /app
 
 COPY package*.json .
-RUN npm i && npm build
+
+RUN npm i && npm run build
 
 COPY ./dist .
 EXPOSE 3000

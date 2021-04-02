@@ -2,7 +2,6 @@ FROM node:latest
 
 RUN npm install @angular/cli@latest -g
 
-
 LABEL version="1.0"
 WORKDIR /app
 

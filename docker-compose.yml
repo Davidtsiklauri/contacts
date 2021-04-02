@@ -6,7 +6,20 @@ services:
       context: ./back-end
       dockerfile: ./Dockerfile
     ports:
-      - "3000:3000"
+      - 3000:3000
+    depends_on:
+      - mongo
+    links:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
   frontend:
     build:
       context: ./front-end
@@ -15,3 +28,7 @@ services:
       - "4200:4200"
     environment:
       - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    links:
+      - backend
